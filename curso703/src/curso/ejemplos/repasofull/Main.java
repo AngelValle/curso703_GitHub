@@ -30,8 +30,11 @@ public class Main {
 //		System.out.println(listapersona.numeroPersonas());
 //		System.out.println("Busqueda: "+listapersona.buscarPersona("Luis"));
 //		listapersona.serializar();
-//		listapersona.deserializar();
+		listapersona.deserializar();
 //		listapersona.mostrar();
+//		listapersona.eliminarPersona("Angel");
+//		listapersona.serializar();
+		listapersona.mostrar();
 
 	}
 }

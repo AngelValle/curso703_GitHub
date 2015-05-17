@@ -71,7 +71,7 @@ public class ListaPersonas implements Serializable
 		return persona;
 	}
 	
-	public boolean serializar() throws FileNotFoundException, IOException
+	public void serializar() throws FileNotFoundException, IOException
 	{
 		Properties f_propiedades = new Properties();
 		FileInputStream fis = null;
@@ -101,10 +101,9 @@ public class ListaPersonas implements Serializable
 			fos.close();
 			oos.close();
 		}
-		return false;
 	}
 	
-	public boolean deserializar() throws FileNotFoundException, IOException, ClassNotFoundException
+	public void deserializar() throws FileNotFoundException, IOException, ClassNotFoundException
 	{
 		Properties f_propiedades = new Properties();
 		FileInputStream fis = null;
@@ -136,7 +135,6 @@ public class ListaPersonas implements Serializable
 			fis2.close();
 			ois.close();
 		}
-		return false;
 	}
 	
 	public void insertarPersona (Persona p) throws PersonaExisteException, DesbordamientoArrayException
@@ -207,29 +205,39 @@ public class ListaPersonas implements Serializable
 	}
 	
 	public void mostrar()
-	{
-		int posicion = 0;
-		int contador = 0;
-		
-		for (int i=0; i<array_personas.length-1; i++) {
+	{	
+		for (int i=0; i<array_personas.length-1; i++)
+		{
 			if (null!=array_personas[i])
 			{
-				contador++;
+				System.out.println(array_personas[i]);
 			}
-		}
-		
-		while(posicion<contador)
-		{
-			System.out.println(array_personas[posicion]);
-			posicion++;
 		}
 	}
 	
-	public boolean eliminarPersona(String nombre)
+	public void eliminarPersona(String nombre)
 	{
-		
-		
-		return false;
+		{
+			int contador = 0;
+			boolean comprobar = false;
+			
+			do {
+				comprobar = (array_personas[contador].getNombre().equals(nombre));
+				if(comprobar==false)
+				{
+					contador++;
+				}
+			} while ((comprobar==false)&&(contador<=array_personas.length-1));
+			
+			if(comprobar)
+			{
+				array_personas[contador] = null;
+			}
+			else
+			{
+				System.out.println("No se encontro la persona a eliminar.");
+			}
+		}
 	}
 	
 	public static int getCapacidad ()
