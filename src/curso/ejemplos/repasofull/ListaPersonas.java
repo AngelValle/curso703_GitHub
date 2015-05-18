@@ -147,7 +147,7 @@ public class ListaPersonas implements Serializable
 				contador++;
 			}
 		}
-		
+
 		if(array_personas[contador]!=null)
 		{
 			throw new DesbordamientoArrayException();
@@ -204,7 +204,7 @@ public class ListaPersonas implements Serializable
 	
 	public void mostrar()
 	{	
-		for (int i=0; i<array_personas.length-1; i++)
+		for (int i=0; i<array_personas.length; i++)
 		{
 			if (null!=array_personas[i])
 			{
@@ -220,8 +220,15 @@ public class ListaPersonas implements Serializable
 			boolean comprobar = false;
 			
 			do {
-				comprobar = (array_personas[contador].getNombre().equals(nombre));
-				if(comprobar==false)
+				if(array_personas[contador]!=null)
+				{
+					comprobar = (array_personas[contador].getNombre().equals(nombre));
+					if(comprobar==false)
+					{
+						contador++;
+					}
+				}
+				else
 				{
 					contador++;
 				}
@@ -230,6 +237,15 @@ public class ListaPersonas implements Serializable
 			if(comprobar)
 			{
 				array_personas[contador] = null;
+				int posicion = 0;
+				
+				while(contador<CAPACIDAD-1)
+				{
+					posicion = contador;
+					array_personas[posicion] = array_personas[contador+1];
+					array_personas[contador+1] = null;
+					contador++;
+				}
 			}
 			else
 			{
@@ -237,10 +253,8 @@ public class ListaPersonas implements Serializable
 			}
 		}
 	}
-	
-	public static int getCapacidad ()
-	{
+
+	public static int getCapacidad() {
 		return CAPACIDAD;
 	}
-
 }
