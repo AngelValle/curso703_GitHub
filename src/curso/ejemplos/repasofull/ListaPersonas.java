@@ -3,9 +3,7 @@ package curso.ejemplos.repasofull;
 import java.io.*;
 import java.util.Properties;
 
-import curso.ejemplos.repasofull.exception.DesbordamientoArrayException;
-import curso.ejemplos.repasofull.exception.FicheroException;
-import curso.ejemplos.repasofull.exception.PersonaExisteException;
+import curso.ejemplos.repasofull.exception.*;
 
 public class ListaPersonas implements Serializable
 {
