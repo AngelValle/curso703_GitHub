@@ -2,7 +2,6 @@ package curso.ejemplos.repasofull;
 
 import java.io.*;
 import java.util.Properties;
-
 import curso.ejemplos.repasofull.exception.*;
 
 public class ListaPersonas implements Serializable
@@ -247,14 +246,17 @@ public class ListaPersonas implements Serializable
 					contador++;
 				}
 			}
-			else
-			{
-				System.out.println("No se encontro la persona a eliminar.");
-			}
 		}
 	}
 
 	public static int getCapacidad() {
 		return CAPACIDAD;
+	}
+	
+	public void limpiar()
+	{
+		for (int i=0; i<array_personas.length; i++) {
+			array_personas[i]=null;
+		}
 	}
 }
