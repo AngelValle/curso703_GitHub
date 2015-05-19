@@ -1,9 +1,7 @@
 package curso.ejemplos.repasofull;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-
+import java.io.*;
+import java.util.*;
 import curso.ejemplos.repasofull.exception.*;
 
 public class Main {
@@ -11,47 +9,66 @@ public class Main {
 	public static void main(String[] args) throws PersonaExisteException, DesbordamientoArrayException, NotaException, FileNotFoundException, IOException, ClassNotFoundException 
 	{	
 		
+		Persona p = new Alumno("Angel",8,8);
+		Persona j = new Alumno("Angel",4,8);
+		
+//		List<Persona> list = new LinkedList<Persona>();
+//		
+//		list.add(p);
+//		list.add(j);
+//		
+//		System.out.println(list);
+		
+		Map<String, Persona> mi_mapa = new HashMap<String, Persona>();
+		
+		mi_mapa.put(p.getNombre(), p);
+		mi_mapa.put(j.getNombre(), j);
+//		mi_mapa.put(j.getNombre(), j);
+		
+		System.out.println(mi_mapa);
+		
+		
 ///////////////////////////// PRUEBA CON LA CLASE "ArrayList" ////////////////////////////////////////////	
-		ArrayList<Persona> arraylist = new ArrayList<Persona>();
-		Alumno angel = new Alumno("Angel",8,8);
-		
-		arraylist.add(new Alumno("Angel",8,8));
-		arraylist.add(new Alumno("Luis",8,8));
-		
-		System.out.println("Contiene arraylist 'Angel': "+arraylist.contains(angel));
-		System.out.println("Borramos objeto 'Angel': "+arraylist.remove(angel));
-		
-		// HASTA AQUI TENEMOS ARRAYLIST CON: 1 OBJETO "Angel".
-		// AHORA VAMOS A COPIAR EN "listapersonas" Y BORRAR "arraylist".
-		
-		ListaPersonas listapersonas = new ListaPersonas();
-		
-		for (Persona persona : arraylist) {
-			listapersonas.insertarPersona(persona); // COPIA DE CADA PERSONA DE "arraylist" en "listapersonas". 
-		}
-		
-		arraylist.clear(); // BORRADO "arraylist".
-		
-		Persona[] array_persona = new Persona[2]; //CREAMOS UN ARRAY NUEVO DE "intermediario".
-		
-		array_persona = listapersonas.getListaPersonas(); // COPIAMOS EN "array_persona" EL ARRAY DE "listapersonas".
-		
-		for (int i=0; i<array_persona.length; i++)  //RECORREMOS "array_persona" Y LO COPIAMOS EN "arraylist".
-		{
-			arraylist.add(array_persona[i]);
-		}
-		
-		listapersonas.limpiar(); // BORRADO "listapersonas".
-		
-		for (Persona persona : arraylist) { //RECORREMOS "arraylist" Y MOSTRAMOS SUS "Persona" SIN MOSTRAR LOS == NULL.
-			if(persona!=null)
-			{
-				System.out.println(persona);
-			}
-		}
-		
-		
-		listapersonas.mostrar();
+//		ArrayList<Persona> arraylist = new ArrayList<Persona>();
+//		Alumno angel = new Alumno("Angel",8,8);
+//		
+//		arraylist.add(new Alumno("Angel",8,8));
+//		arraylist.add(new Alumno("Luis",8,8));
+//		
+//		System.out.println("Contiene arraylist 'Angel': "+arraylist.contains(angel));
+//		System.out.println("Borramos objeto 'Angel': "+arraylist.remove(angel));
+//		
+//		// HASTA AQUI TENEMOS ARRAYLIST CON: 1 OBJETO "Angel".
+//		// AHORA VAMOS A COPIAR EN "listapersonas" Y BORRAR "arraylist".
+//		
+//		ListaPersonas listapersonas = new ListaPersonas();
+//		
+//		for (Persona persona : arraylist) {
+//			listapersonas.insertarPersona(persona); // COPIA DE CADA PERSONA DE "arraylist" en "listapersonas". 
+//		}
+//		
+//		arraylist.clear(); // BORRADO "arraylist".
+//		
+//		Persona[] array_persona = new Persona[2]; //CREAMOS UN ARRAY NUEVO DE "intermediario".
+//		
+//		array_persona = listapersonas.getListaPersonas(); // COPIAMOS EN "array_persona" EL ARRAY DE "listapersonas".
+//		
+//		for (int i=0; i<array_persona.length; i++)  //RECORREMOS "array_persona" Y LO COPIAMOS EN "arraylist".
+//		{
+//			arraylist.add(array_persona[i]);
+//		}
+//		
+//		listapersonas.limpiar(); // BORRADO "listapersonas".
+//		
+//		for (Persona persona : arraylist) { //RECORREMOS "arraylist" Y MOSTRAMOS SUS "Persona" SIN MOSTRAR LOS == NULL.
+//			if(persona!=null)
+//			{
+//				System.out.println(persona);
+//			}
+//		}
+//		
+//		
+//		listapersonas.mostrar();
 		
 //////////////////////////////////////////////////////////////////////////////////////////////////////////	
 			

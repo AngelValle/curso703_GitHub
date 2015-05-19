@@ -1,7 +1,7 @@
 package curso.ejemplos.repasofull;
 
 import java.io.*;
-import java.util.Properties;
+import java.util.*;
 import curso.ejemplos.repasofull.exception.*;
 
 public class ListaPersonas implements Serializable
