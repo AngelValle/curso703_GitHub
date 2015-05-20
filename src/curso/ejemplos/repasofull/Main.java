@@ -2,33 +2,80 @@ package curso.ejemplos.repasofull;
 
 import java.io.*;
 import java.util.*;
+
 import curso.ejemplos.repasofull.exception.*;
 
 public class Main {
 	
 	public static void main(String[] args) throws PersonaExisteException, DesbordamientoArrayException, NotaException, FileNotFoundException, IOException, ClassNotFoundException 
 	{	
+		Persona p1 = new Persona("Angel",22);
+		Persona p2 = new Persona("Luis",18);
+		Persona p3 = new Persona("Juan",34);
 		
-		Persona p = new Alumno("Angel",8,8);
-		Persona j = new Alumno("Angel",4,8);
+		Map<Persona, Persona> hash_persona = new HashMap<Persona, Persona>();
 		
+		hash_persona.put(p1, p1);
+		hash_persona.put(p2, p2);
+		hash_persona.put(p3, p3);
+		
+		Map<Persona, Persona> tree_persona = new TreeMap<Persona, Persona>();
+		
+		tree_persona.putAll(hash_persona);
+		
+		hash_persona.clear();
+		
+		hash_persona.putAll(tree_persona);
+		
+		System.out.println(hash_persona);
+		
+		
+		
+		
+		
+		
+		
+//		ArrayList<Persona> arraylist = new ArrayList<Persona>();
+//		arraylist.add(p1);
+//		arraylist.add(p2);
+//		arraylist.add(p3);
+//		
+//		System.out.println(arraylist+"__Sin ordenar");
+//		Collections.sort(arraylist, new OrdenarPorNombre());
+//		System.out.println(arraylist+"__Ordenado por nombre");
+//		Collections.sort(arraylist, new OrdenarPorEdad());
+//		System.out.println(arraylist+"__Ordenado por edad");
+		
+///////////////////////////// PRUEBAS CON INTERFAZ "Lista" /////////////////////////////
 //		List<Persona> list = new LinkedList<Persona>();
 //		
 //		list.add(p);
 //		list.add(j);
 //		
 //		System.out.println(list);
+///////////////////////////////////////////////////////////////////////////////////////		
 		
-		Map<String, Persona> mi_mapa = new HashMap<String, Persona>();
+/////////////////////////////////PRUEBAS CON INTERFAZ "Set" ///////////////////////////
+//		Set<Persona> mi_mapa2 = new TreeSet<Persona>();
+//		
+//		mi_mapa2.add(p1);
+//		mi_mapa2.add(p2);
+//		mi_mapa2.add(p3);
+//		
+//		System.out.println(mi_mapa2);
+///////////////////////////////////////////////////////////////////////////////////////	
 		
-		mi_mapa.put(p.getNombre(), p);
-		mi_mapa.put(j.getNombre(), j);
-//		mi_mapa.put(j.getNombre(), j);
+/////////////////////////////////PRUEBAS CON INTERFAZ "Map" ///////////////////////////
+//		Map<String, Persona> mi_mapa1 = new HashMap<String, Persona>();
+//		
+//		mi_mapa1.put(p1.getNombre(), p1);
+//		mi_mapa1.put(p2.getNombre(), p2);
+//		mi_mapa1.put(p2.getNombre(), p2);
+//		
+//		System.out.println(mi_mapa);
+///////////////////////////////////////////////////////////////////////////////////////		
 		
-		System.out.println(mi_mapa);
-		
-		
-///////////////////////////// PRUEBA CON LA CLASE "ArrayList" ////////////////////////////////////////////	
+///////////////////////////// PRUEBA CON LA CLASE "ArrayList" ///////////////////////////////////////	
 //		ArrayList<Persona> arraylist = new ArrayList<Persona>();
 //		Alumno angel = new Alumno("Angel",8,8);
 //		

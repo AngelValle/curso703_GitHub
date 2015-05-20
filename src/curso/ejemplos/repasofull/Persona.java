@@ -1,7 +1,7 @@
 package curso.ejemplos.repasofull;
 import java.io.Serializable;
 
-public class Persona implements Serializable 
+public class Persona implements Serializable, Comparable<Persona>
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -39,6 +39,8 @@ public class Persona implements Serializable
 		this.nombre = nombre;
 	}
 	
+	
+	
 	@Override
 	public String toString() 
 	{
@@ -61,5 +63,24 @@ public class Persona implements Serializable
 			igualdad = false;
 		}
 		return igualdad;
+	}
+
+	@Override
+	public int compareTo(Persona persona) {
+		int retorno = 0;
+		
+		if (this.getEdad()>persona.getEdad()) 
+		{
+			retorno = 1;
+		}
+		else if (this.getEdad()<persona.getEdad()) 
+		{
+			retorno = -1;
+		}
+		else if (this.getEdad()==persona.getEdad()) 
+		{
+			retorno = 0;
+		}	
+		return retorno;
 	}
 }
