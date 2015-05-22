@@ -9,32 +9,36 @@ public class Main {
 	
 	public static void main(String[] args) throws PersonaExisteException, DesbordamientoArrayException, NotaException, FileNotFoundException, IOException, ClassNotFoundException 
 	{	
+		LinkedHashMap<Coche, Persona> linkedhashmap_ordenado_klave = null;
+		LinkedHashMap<Coche, Persona> linkedhashmap_ordenado_valor = null;
+		Map<Coche, Persona> hashmap_sin_ordenar = null;
+		
 		Persona p1 = new Persona("Angel",22);
 		Persona p2 = new Persona("Luis",18);
 		Persona p3 = new Persona("Juan",34);
+		Coche c1 = new Coche("12345_ANGEL", Coche.TipoMarca.MERCEDES);
+		Coche c2 = new Coche("34512_LUIS", Coche.TipoMarca.FORD);
+		Coche c3 = new Coche("23454_JUAN", Coche.TipoMarca.KIA);
 		
-		Map<Persona, Persona> hash_persona = new HashMap<Persona, Persona>();
+		hashmap_sin_ordenar = new HashMap<Coche, Persona>();
 		
-		hash_persona.put(p1, p1);
-		hash_persona.put(p2, p2);
-		hash_persona.put(p3, p3);
+		hashmap_sin_ordenar.put(c1, p1);
+		hashmap_sin_ordenar.put(c2, p2);
+		hashmap_sin_ordenar.put(c3, p3);
 		
-		Map<Persona, Persona> tree_persona = new TreeMap<Persona, Persona>();
+		System.out.println(hashmap_sin_ordenar+"HashMap_Sin_Ordenar");
 		
-		tree_persona.putAll(hash_persona);
+		linkedhashmap_ordenado_klave = (LinkedHashMap<Coche, Persona>)OrdenHashMap.ordenarPorKlave(hashmap_sin_ordenar);
 		
-		hash_persona.clear();
+		System.out.println(linkedhashmap_ordenado_klave+"HashMap_Ordenado_Por_Klave");
 		
-		hash_persona.putAll(tree_persona);
+		linkedhashmap_ordenado_valor = (LinkedHashMap<Coche, Persona>) OrdenHashMap.ordenarPorValor(hashmap_sin_ordenar);
 		
-		System.out.println(hash_persona);
+		System.out.println(linkedhashmap_ordenado_valor+"HashMap_Ordenado_Por_Valor");
 		
+
 		
-		
-		
-		
-		
-		
+///////////////////////////////////////////////////////////////////////////////////////		
 //		ArrayList<Persona> arraylist = new ArrayList<Persona>();
 //		arraylist.add(p1);
 //		arraylist.add(p2);
