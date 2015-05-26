@@ -1,34 +1,31 @@
 package curso.ejemplos.jaxp;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
+import org.jdom2.*;
+import org.jdom2.input.*;
+import org.jdom2.output.*;
 
 public class ProcesoJDOM {
 	
-	public static void main(String[] args) throws FileNotFoundException,
-			JDOMException, IOException {
-
+	public static void main(String[] args) throws FileNotFoundException, JDOMException, IOException 
+	{
 		//CREAMOS EL PARSER
 		SAXBuilder builder = new SAXBuilder();
-		// Construimos el arbol DOM a partir del fichero xml
-		Document documentJDOM = builder.build(new FileInputStream("libros.xml"));
+		
+		// CONSTRUIMOS EL ARBOL DOM A PARTIR DEL FICHERO XML
+		Document documentoJDOM = builder.build(new FileInputStream("ficheros\\libros.xml"));
 
 		//MOSTRAMOS EL DOCUMENTO
-		Element raiz = documentJDOM.getRootElement();
-		// Recorremos los hijos de la etiqueta raíz
+		Element raiz = documentoJDOM.getRootElement();
+		
+		// RECORREMOS LOS HIJOS DE LA ETIQUETA RAÍZ
 		List<Element> libros = raiz.getChildren();
-		for (Element libro : libros) {
-			//para cada libro, obtenemos su detalle
+		
+		for (Element libro : libros) 
+		{
+			//PARA CADA LIBRO, OBTENEMOS SU DETALLE
 			System.out.println(libro.getAttribute("isbn"));
 			List<Element> detalles = libro.getChildren();
 
@@ -43,11 +40,14 @@ public class ProcesoJDOM {
 		}
 		
 		//AÑADO UN NUEVO HIJO
-		Element padre = documentJDOM.getRootElement();
-	    // Creamos una nueva etiqueta  
-	    Element nuevolibro = new Element("libro");  
-	    // Añadimos un atributo  
-	    nuevolibro.setAttribute("isbn", "xxxx-yyyy");  
+		Element padre = documentoJDOM.getRootElement();
+		
+	    // CREAMOS UNA NUEVA ETIQUETA  
+	    Element nuevolibro = new Element("libro"); 
+	    
+	    // AÑADIMOS UN ATRIBUTO  
+	    nuevolibro.setAttribute("isbn", "xxxx-yyyy"); 
+	    
 	    padre.addContent(nuevolibro);  
 
 	    
@@ -57,7 +57,7 @@ public class ProcesoJDOM {
 	    // Creamos el serializador con el formato deseado  
 	    XMLOutputter xmloutputter = new XMLOutputter(format);
 	    // Serializamos el document parseado  
-	    String docStr = xmloutputter.outputString(documentJDOM); 
+	    String docStr = xmloutputter.outputString(documentoJDOM); 
 	    //Volcamos en un fichero
 	    FileWriter fw = new FileWriter("lsalida3.xml");
 	    fw.write(docStr);

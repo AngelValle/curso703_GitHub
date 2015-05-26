@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Libros>
+  <Libro ISBN="978-84-8346-520-2">
+    <Titulo>El Ocho</Titulo>
+    <Autor>Katherine Neville</Autor>
+    <Anyo>1988</Anyo>
+    <Editorial>Ballantine Books</Editorial>
+  </Libro>
+  <Libro ISBN="84-675-069-X">
+    <Titulo>Memorias de Idhún I - La Resistencia</Titulo>
+    <Autor>Laura Gallego García</Autor>
+    <Anyo>2005</Anyo>
+    <Editorial>Ediciones SM</Editorial>
+  </Libro>
+  <Libro ISBN="978-84-8346-808-1">
+    <Titulo>Next</Titulo>
+    <Autor>Michael Crichton</Autor>
+    <Anyo>2008</Anyo>
+    <Editorial>DeBolsillo</Editorial>
+  </Libro>
+  <Libro ISBN="84-226-6765-7">
+    <Titulo>Qumrán</Titulo>
+    <Autor>Eliette Abécasis</Autor>
+    <Anyo>1997</Anyo>
+    <Editorial>Ediciones B</Editorial>
+  </Libro>
+  <Total>4</Total>
+</Libros>
