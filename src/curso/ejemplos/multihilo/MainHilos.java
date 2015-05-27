@@ -11,8 +11,7 @@ public class MainHilos {
 		Hilos h2 = new Hilos("Tortuga");
 		Hilos h3 = new Hilos("Zorro");
 		
-		h3.setPriority(Thread.MIN_PRIORITY);
-		h2.setPriority(Thread.MAX_PRIORITY);
+		h2.setPriority(Thread.MIN_PRIORITY);
 		
 		h1.start();
 		h2.start();
