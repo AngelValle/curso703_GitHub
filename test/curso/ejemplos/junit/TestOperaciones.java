@@ -2,6 +2,7 @@ package curso.ejemplos.junit;
 
 import static org.junit.Assert.*;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -14,11 +15,19 @@ public class TestOperaciones {
 	{
 		tester = new Operaciones();
 	}
+	
+	@AfterClass
+	public static void terminaClase()
+	{
+		tester = null;
+		Runtime runtime = Runtime.getRuntime(); // Objeto RUNTIME 
+		runtime.gc();
+	}
 
 	@Test
 	public void testSuma() 
 	{
-		assertEquals("5 MAS 3 = 8",9,tester.suma(5, 3));
+		assertEquals("5 MAS 3 = 8",8,tester.suma(5, 3));
 	}
 
 	@Test
@@ -38,5 +47,6 @@ public class TestOperaciones {
 	{
 		assertEquals("10 MENOS 4 = 6",6,tester.resta(10, 4));
 	}
+	
 
 }
