@@ -1,16 +1,15 @@
 package curso.ejemplos.practicasfile;
 
-import java.util.Scanner;
 import java.io.*;
+import java.util.*;
 
 public class PracticaFile {
 	
-	public static String[] ficheroToArray(String rutafichero) {
+	public static ArrayList<String> ficheroToArray(String rutafichero) {
 		File fichero = new File(rutafichero);
-		String[] array = null;
+		ArrayList<String> array = new ArrayList<String>();
 		FileReader fr = null;
 		BufferedReader br = null;
-		int contador = 0;
 		
 		if(fichero.exists()) {
 			try {
@@ -20,8 +19,7 @@ public class PracticaFile {
 			
 				while(null!=(linea = br.readLine())) {
 					
-					array[contador] = linea;
-					contador++;
+					array.add(linea.toString());
 //					System.out.println(linea);
 				}
 				
@@ -43,7 +41,7 @@ public class PracticaFile {
 		
 		String rutafichero = null;
 		rutafichero = "ficheros\\1.txt";
-		ficheroToArray(rutafichero);
+		System.out.println(ficheroToArray(rutafichero));
 		
 	}
 

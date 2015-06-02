@@ -14,7 +14,7 @@ public class MainPersona {
 		for (int contador=0;contador < numeropersonas; contador++){
 			Persona p 	= null; // Creamos un objeto "p" de la clase "Persona" y le asignamos el valor de memoria "null".
 			Persona p2 	= null;
-			boolean igualdadobjetos = false;
+//			boolean igualdadobjetos = false;
 			
 			nombre	= PedirDatosPersona.pedirNombre(); // nombre = String devuelta por el metodo "pedirNombre()".
 			edad 	= PedirDatosPersona.pedirEdad(); // edad = byte devuelto por el metodo "pedirEdad()".
@@ -25,7 +25,7 @@ public class MainPersona {
 			
 //			p.mostrar();
 			
-			igualdadobjetos = p.equals(p2);
+//			igualdadobjetos = p.equals(p2);
 			
 //			if(igualdadobjetos == false){
 //				System.out.println("Los objetos no son iguales.");

@@ -1,9 +1,5 @@
 package curso.ejemplos.multihilo;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class MainHilos {
 
 	public static void main(String[] args) {

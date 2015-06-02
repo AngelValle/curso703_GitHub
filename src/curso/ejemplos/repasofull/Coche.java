@@ -1,6 +1,6 @@
 package curso.ejemplos.repasofull;
 
-public class Coche implements Comparable{
+public class Coche implements Comparable<Object>{
 	
 	 public enum TipoMarca {MERCEDES, FORD, NISSAN, KIA, FIAT};
 	 

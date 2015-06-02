@@ -3,14 +3,14 @@ package curso.ejemplos.repasofull;
 import java.io.*;
 import java.util.*;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;  // importar libreria log4j
 
 import curso.ejemplos.repasofull.exception.*;
 
 public class ListaPersonas implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger("mylog");
+//	private static final Logger log = Logger.getLogger("mylog"); // Hacer un logger
 	private static final int CAPACIDAD = 10;
 	private static Persona[] array_personas;
 	

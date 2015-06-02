@@ -1,7 +1,7 @@
 package curso.ejemplos.practicasfile;
 
 import java.io.*;
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class SacarEmailsDeFicheros {
 	
@@ -24,7 +24,7 @@ public class SacarEmailsDeFicheros {
 		
 		String[] array_de_emails = null;
 		String linea = null;
-		String email = "";
+//		String email = "";
 		int contador = 0;
 		
 		String emailstart 	= "***";
