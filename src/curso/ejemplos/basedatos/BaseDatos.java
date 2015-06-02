@@ -15,7 +15,7 @@ public class BaseDatos {
 		Connection conn = null;
 		ResultSet rset = null;
 		Statement stmt = null;
-		ArrayList<Employees> arraylist = new ArrayList<Employees>();
+		ArrayList<DTO_Employees> arraylist = new ArrayList<DTO_Employees>();
 		
 		
 		try
@@ -35,8 +35,8 @@ public class BaseDatos {
 //				arraylist.add(rset.getString(1)+rset.getString(2)+rset.getString(3)+rset.getString(4)
 //						+rset.getString(5)+rset.getString(6)+rset.getString(7)+rset.getString(8)+rset.getString(9)
 //						+rset.getString(10)+rset.getString(11));
-				Employees empleado = null;
-				empleado = new Employees(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4)
+				DTO_Employees empleado = null;
+				empleado = new DTO_Employees(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4)
 						,rset.getString(5),rset.getString(6),rset.getString(7),rset.getString(8),rset.getString(9)
 						,rset.getString(10),rset.getString(11));
 				
