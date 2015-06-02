@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.Properties;
 
@@ -69,6 +70,12 @@ public class Conexion {
 	protected Connection iniciarConexion() throws Exception
 	{
 		Connection conn = DriverManager.getConnection (this.conection, this.user, this.password);
+		
+//		conn.setAutoCommit(false);
+//		Savepoint savepoint1 = conn.setSavepoint();
+//		conn.rollback(savepoint1);
+//		conn.commit();
+		
 		return conn;
 	}
 	
