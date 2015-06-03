@@ -6,10 +6,7 @@ public class BaseDatos_DTO_DAO {
 	
 	public static void main(String[] args) throws Exception {
 		
-		List<DTO_Employees> arraylist = new ArrayList<DTO_Employees>(); // Creamos ArrayList
-		
-		arraylist = DAO_Employees.recuperarTodosDTO();
-		
+		List<DTO_Employees> arraylist = DAO_Employees.recuperarTodosDTO(); // Creamos ArrayList		
 		System.out.println(arraylist);
 	}
 }

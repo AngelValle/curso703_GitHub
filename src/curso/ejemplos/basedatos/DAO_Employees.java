@@ -37,11 +37,12 @@ public class DAO_Employees implements CRUD{
 	{
 		List<DTO_Employees> listemployees = new ArrayList<DTO_Employees>();
 		Conexion conexion = Conexion.getInstance();
-		conexion.iniciarDriver(); // Iniciamos el Driver de Oracle
+		conexion.iniciarDriver();
 
 		try(Statement stmt = conexion.iniciarRegistro(conexion.iniciarConexion()))
-		{   
-  	        try(ResultSet rset = SentenciasSQL.consultaSueldo(stmt))
+		{   		
+//			try(ResultSet rset = SentenciasSQL.consultaSueldo(stmt))
+			try(ResultSet rset = stmt.executeQuery(SentenciasSQL.CONSULT_EMPLEADOS_SALARY_MAS_3000))
   	        {
   				listemployees = resultset2dtoemployees(rset);
   			}  

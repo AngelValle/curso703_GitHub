@@ -18,20 +18,29 @@ public class Conexion {
 	private String driver = null;
 	private String conection = null;
 	
-	private static Conexion instance;
+//	private static Conexion instance;
+	private static Conexion conexion  = new Conexion(); // Singleton
 	
-	private Conexion() throws Exception {
-		
+	private Conexion()
+	{
+	}
+	
+	public static Conexion getInstance()
+	{
+		return conexion;
+	}
+	
+	protected void iniciarDriver() throws Exception
+	{
 		BufferedReader br = null;
-		
 		try
 		{
 			br = new BufferedReader(new FileReader("ficheros/bd.properties"));
-			propiedades.load(br);
-			user = propiedades.getProperty("usuario");
-			password = propiedades.getProperty("password");
-			driver = propiedades.getProperty("driver");
-			conection = propiedades.getProperty("conection");
+			this.propiedades.load(br);
+			this.user = propiedades.getProperty("usuario");
+			this.password = propiedades.getProperty("password");
+			this.driver = propiedades.getProperty("driver");
+			this.conection = propiedades.getProperty("conection");
 			
 		}
 		catch (FileNotFoundException e) 
@@ -50,22 +59,8 @@ public class Conexion {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	public static Conexion getInstance() throws Exception
-	{
-		if (instance == null)
-		{
-			instance = new Conexion();
-		}
-		return instance;
-	}
-	
-	protected void iniciarDriver() throws Exception
-	{
 		Class.forName(driver);
 	}
-	
 	
 	protected Connection iniciarConexion() throws Exception
 	{

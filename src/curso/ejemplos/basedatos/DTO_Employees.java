@@ -35,7 +35,7 @@ public class DTO_Employees {
 	public String toString() {
 		String cadena = null;
 		cadena = (
-				"\n*\n*   Empleado: \n*\n"
+				"\n*\n*   Empleado:  nº"+this.EMPLOYEE_ID+"\n*\n"
 				+"*  EMPLOYEE_ID: "+this.EMPLOYEE_ID+"\n"
 				+"*  FIRST_NAME: "+this.FIRST_NAME+"\n"
 				+"*  LAST_NAME: "+this.LAST_NAME+"\n"

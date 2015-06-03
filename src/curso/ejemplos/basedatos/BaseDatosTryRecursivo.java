@@ -12,7 +12,7 @@ public class BaseDatosTryRecursivo {
 		Conexion conexion = Conexion.getInstance();
 		conexion.iniciarDriver(); // Iniciamos el Driver de Oracle
 		
-		try(Statement stmt = conexion.iniciarRegistro(conexion.iniciarConexion("HR", "PASSWORD")))
+		try(Statement stmt = conexion.iniciarRegistro(conexion.iniciarConexion()))
 		{   
   	        try(ResultSet rset = SentenciasSQL.consultaSueldo(stmt))
   	        {
