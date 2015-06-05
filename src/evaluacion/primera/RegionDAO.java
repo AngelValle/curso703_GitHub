@@ -22,16 +22,12 @@ public class RegionDAO {
 	}
 	
 	
-	/**
-	 * Metodo para recuperar una lista con el resultado de toda la lista de BD REGIONS
-	 *  
-	 * 
-	 * @return Nos devuelve una List de RegionDTO.
-	 */
-	public static List<RegionDTO> recuperarListaRegion()
+	
+	public static List<RegionDTO> recuperarRegion(String bd, RegionDTO regiondto)
+//	public static List<RegionDTO> recuperarRegion()
 	{
-		List<RegionDTO> listregion = new ArrayList<RegionDTO>();
 		ResultSet rset = null;
+		List<RegionDTO> listregion = new ArrayList<RegionDTO>();
 
 		try 
 		{
@@ -39,7 +35,9 @@ public class RegionDAO {
 			Connection conn = conexion.iniciarConexion();
 			Statement stmt = conexion.iniciarRegistro(conn);
 			
-			rset = stmt.executeQuery(SecuenciasSQL.RECUPERAR_LISTA_REGION);
+			String query = SecuenciasSQL.recuperarRegionID(bd, regiondto.getI_region_id());
+			rset = stmt.executeQuery(query);
+//			rset = stmt.executeQuery(SecuenciasSQL.BUSCARREGION);
 			listregion = resultset2regionDTO(rset);
 		} 
 		catch (Exception e) 
@@ -60,26 +58,24 @@ public class RegionDAO {
 		return listregion;
 	}
 	
-	
-	/**
-	 * Metodo para insertar un objeto RegionDTO en base de datos REGIONS
-	 *  
-	 * @param regiondto --> Objeto RegionDTO para insertalo en la base de datos.
-	 * @return Nos devuelve un boleano en True o False.
-	 */
-	public static boolean insertarRegion (RegionDTO regiondto)
-	{	
-		RegionDTO regionDTO = new RegionDTO();
+
+	public static List<RegionDTO> recuperarListaRegion(String bd)
+//	public static List<RegionDTO> recuperarListaRegion()
+	{
+		List<RegionDTO> listregion = new ArrayList<RegionDTO>();
 		ResultSet rset = null;
+
 		try 
 		{
 			conexion.iniciarDriver();
 			Connection conn = conexion.iniciarConexion();
 			Statement stmt = conexion.iniciarRegistro(conn);
 			
-			rset = (ResultSet)regionDTO;		
+			String query = SecuenciasSQL.recuperarListaRegion(bd);
+			rset = stmt.executeQuery(query);
+//			rset = stmt.executeQuery(SecuenciasSQL.LISTAREGION);
 			
-			stmt.executeQuery(SecuenciasSQL.CREAR_REGION);
+			listregion = resultset2regionDTO(rset);
 		} 
 		catch (Exception e) 
 		{
@@ -96,7 +92,48 @@ public class RegionDAO {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return listregion;
+	}
+	
+
+	public static void insertarRegion (String bd,RegionDTO regiondto)
+//	public static void insertarRegion ()
+	{	
+		try 
+		{
+			conexion.iniciarDriver();
+			Connection conn = conexion.iniciarConexion();
+			Statement stmt = conexion.iniciarRegistro(conn);
+			
+			String query = SecuenciasSQL.crearRegion(bd, regiondto.getI_region_id(), regiondto.getS_region_name());
+			stmt.executeUpdate(query);
+//			stmt.executeQuery(SecuenciasSQL.INSERTARREGION);
+			
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void borrarRegion (String bd, RegionDTO regiondto)
+//	public static void borrarRegion ()
+	{	
+		try 
+		{
+			conexion.iniciarDriver();
+			Connection conn = conexion.iniciarConexion();
+			Statement stmt = conexion.iniciarRegistro(conn);
+			
+			String query = SecuenciasSQL.borrarRegionID(bd, regiondto.getI_region_id());
+			stmt.executeUpdate(query);
+//			stmt.executeQuery(SecuenciasSQL.BORRARREGION);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 }

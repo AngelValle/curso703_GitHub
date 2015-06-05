@@ -12,7 +12,6 @@ public class RegionDTO {
 	}
 	
 	public RegionDTO() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	
