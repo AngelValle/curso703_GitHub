@@ -8,7 +8,14 @@ public class RegionDAO {
 	
 	private static Conexion conexion = Conexion.getInstance();
 	
-	
+	/**
+	 * Metodo que usamos para resolver los ResultSet de la Tabla REGIONS y convertirlos 
+	 * a List con generico "RegionDTO".
+	 * 
+	 * @param rset => Recogemos un ResultSet con los registros
+	 * @return List con generico "RegionDTO", almacena RegionDTO's 
+	 * @throws Exception
+	 */
 	public static List<RegionDTO> resultset2regionDTO (ResultSet rset) throws Exception
 	{
 		List<RegionDTO> listregion = new ArrayList<RegionDTO>();
@@ -21,13 +28,18 @@ public class RegionDAO {
 		return listregion;
 	}
 	
-	
-	
-	public static List<RegionDTO> recuperarRegion(String bd, RegionDTO regiondto)
-//	public static List<RegionDTO> recuperarRegion()
+	/**
+	 * Metodo que usamos para recuperar una unica region de la Tabla REGIONS seleccionada por
+	 * su clave unica "REGION_ID".
+	 * 
+	 * @param regiondto => Recogemos una instancia de RegionDTO que usaremos su "REGION_ID" para 
+	 * la busqueda de igualdad con otro RegionDTO que forme parte de la tabla.
+	 * @return Objeto RegionDTO recogido con el mismo "REGION_ID" que el RegionDTO recogido.
+	 */
+	public static RegionDTO recuperarRegion(RegionDTO regiondto)
 	{
 		ResultSet rset = null;
-		List<RegionDTO> listregion = new ArrayList<RegionDTO>();
+		RegionDTO regiondtofinal = null;
 
 		try 
 		{
@@ -35,9 +47,47 @@ public class RegionDAO {
 			Connection conn = conexion.iniciarConexion();
 			Statement stmt = conexion.iniciarRegistro(conn);
 			
-			String query = SecuenciasSQL.recuperarRegionID(bd, regiondto.getI_region_id());
+			String query = SecuenciasSQL.recuperarRegionID(regiondto.getI_region_id());
 			rset = stmt.executeQuery(query);
-//			rset = stmt.executeQuery(SecuenciasSQL.BUSCARREGION);
+			regiondtofinal = resultset2regionDTO(rset).get(0);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try 
+			{
+				rset.close();
+			} 
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		return regiondtofinal;
+	}
+	
+	/**
+	 * Metodo que usaremos para recuperar una lista de todos los registros que forman la Tabla REGIONS
+	 * 
+	 * @return List con generico "RegionDTO", almacena RegionDTO's
+	 */
+	public static List<RegionDTO> recuperarListaRegion()
+	{
+		List<RegionDTO> listregion = new ArrayList<RegionDTO>();
+		ResultSet rset = null;
+
+		try 
+		{
+			conexion.iniciarDriver();
+			Connection conn = conexion.iniciarConexion();
+			Statement stmt = conexion.iniciarRegistro(conn);
+			
+			String query = SecuenciasSQL.recuperarListaRegion();
+			rset = stmt.executeQuery(query);
+			
 			listregion = resultset2regionDTO(rset);
 		} 
 		catch (Exception e) 
@@ -58,82 +108,58 @@ public class RegionDAO {
 		return listregion;
 	}
 	
-
-	public static List<RegionDTO> recuperarListaRegion(String bd)
-//	public static List<RegionDTO> recuperarListaRegion()
-	{
-		List<RegionDTO> listregion = new ArrayList<RegionDTO>();
-		ResultSet rset = null;
-
+	/**
+	 * Metodo que usaremos para insertar una region en la Tabla REGIONS
+	 * 
+	 * @param regiondto => Objeto RegionDTO que usamos para insertar
+	 * @return Booleano indicando el resultado de la operacion
+	 */
+	public static boolean insertarRegion (RegionDTO regiondto)
+	{	
+		boolean comprobar = false;
 		try 
 		{
 			conexion.iniciarDriver();
 			Connection conn = conexion.iniciarConexion();
 			Statement stmt = conexion.iniciarRegistro(conn);
 			
-			String query = SecuenciasSQL.recuperarListaRegion(bd);
-			rset = stmt.executeQuery(query);
-//			rset = stmt.executeQuery(SecuenciasSQL.LISTAREGION);
-			
-			listregion = resultset2regionDTO(rset);
+			String query = SecuenciasSQL.crearRegion(regiondto.getI_region_id(), regiondto.getS_region_name());
+			stmt.executeUpdate(query);
+			comprobar = true;
 		} 
 		catch (Exception e) 
 		{
+			comprobar = false;
 			e.printStackTrace();
 		}
-		finally
-		{
-			try 
-			{
-				rset.close();
-			} 
-			catch (SQLException e) 
-			{
-				e.printStackTrace();
-			}
-		}
-		return listregion;
+		return comprobar;
 	}
 	
-
-	public static void insertarRegion (String bd,RegionDTO regiondto)
-//	public static void insertarRegion ()
+	/**
+	 * Metodo que usaremos para borrar una region en la Tabla REGIONS
+	 * 
+	 * @param regiondto => Objeto RegionDTO que usamos para borrarlo en la tabla
+	 * @return Booleano indicando el resultado de la operacion
+	 */
+	public static boolean borrarRegion (RegionDTO regiondto)
 	{	
+		boolean comprobar = false;
 		try 
 		{
 			conexion.iniciarDriver();
 			Connection conn = conexion.iniciarConexion();
 			Statement stmt = conexion.iniciarRegistro(conn);
 			
-			String query = SecuenciasSQL.crearRegion(bd, regiondto.getI_region_id(), regiondto.getS_region_name());
+			String query = SecuenciasSQL.borrarRegionID(regiondto.getI_region_id());
 			stmt.executeUpdate(query);
-//			stmt.executeQuery(SecuenciasSQL.INSERTARREGION);
-			
+			comprobar = true;
 		} 
 		catch (Exception e) 
 		{
+			comprobar = false;
 			e.printStackTrace();
 		}
-	}
-	
-	
-	public static void borrarRegion (String bd, RegionDTO regiondto)
-//	public static void borrarRegion ()
-	{	
-		try 
-		{
-			conexion.iniciarDriver();
-			Connection conn = conexion.iniciarConexion();
-			Statement stmt = conexion.iniciarRegistro(conn);
-			
-			String query = SecuenciasSQL.borrarRegionID(bd, regiondto.getI_region_id());
-			stmt.executeUpdate(query);
-//			stmt.executeQuery(SecuenciasSQL.BORRARREGION);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
+		return comprobar;
 	}
 	
 }

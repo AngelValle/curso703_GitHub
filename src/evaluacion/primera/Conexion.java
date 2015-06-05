@@ -17,17 +17,24 @@ public class Conexion {
 	private String driver = null;
 	private String conection = null;
 	
+	// Creamos un objeto de Conexion como unica instancia.
 	private static Conexion conexion  = new Conexion(); // Singleton
 	
+	// Establecemos en private el constructor.
 	private Conexion()
 	{
 	}
 	
+	// Creamos un metodo para recibir la instancia creada anteriormente.
+	// Lo utilizamos como su fuera un constructor, con la diferencia de que siempre nos
+	// devuelve la misma instancia.
 	public static Conexion getInstance()
 	{
 		return conexion;
 	}
 	
+	// Cargamos el archivo .properties en memoria y establecemos el valor de los atributos de la instancia.
+	// Cargamos el Driver
 	protected void iniciarDriver() throws Exception
 	{
 		BufferedReader br = null;
@@ -60,6 +67,7 @@ public class Conexion {
 		Class.forName(driver);
 	}
 	
+	// Iniciamos la conexion con los valores del .properties
 	protected Connection iniciarConexion() throws Exception
 	{
 		Connection conn = DriverManager.getConnection (this.conection, this.user, this.password);
@@ -67,6 +75,7 @@ public class Conexion {
 		return conn;
 	}
 	
+	// Creamos un Statemet de la conexion y lo devolvemos.
 	protected  Statement iniciarRegistro(Connection conn) throws Exception
 	{
 		Statement stmt = conn.createStatement();

@@ -6,7 +6,6 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		String bd = "HR.REGIONS";
 		
 		RegionDTO regiondto = new RegionDTO();
 		regiondto.setI_region_id(5);
@@ -14,18 +13,18 @@ public class Main {
 		
 		// PRUEBA INSERTAR
 		
-		RegionDAO.insertarRegion(bd, regiondto);
+		System.out.println("Region insertada: "+RegionDAO.insertarRegion(regiondto));
 		
 		// PRUEBA MOSTRAR FILTRADO
 		
-		List<RegionDTO> recuperarregion = RegionDAO.recuperarRegion(bd, regiondto);
-		System.out.println(recuperarregion);
+		RegionDTO regionrecogida = RegionDAO.recuperarRegion(regiondto);
+		System.out.println(regionrecogida);
 		// PRUEBA BORRAR
 		
-		 RegionDAO.borrarRegion(bd, regiondto);
+		 System.out.println("Region borrada: "+RegionDAO.borrarRegion(regiondto));
 		// PRUEBA MOSTRAR LISTA
 		
-		 List<RegionDTO> recuperarlistaregion = RegionDAO.recuperarListaRegion(bd);
+		 List<RegionDTO> recuperarlistaregion = RegionDAO.recuperarListaRegion();
 		 System.out.println(recuperarlistaregion);
 	}
 
